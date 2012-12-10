@@ -116,12 +116,10 @@ def get_port(args):
 	for opt, arg in opts:          
 		print opt + ' ' + arg      
 		if opt in ("-p", "--port"):
-			print 'arg is ' + arg
 			port = arg
-	
-	print 'port is ' + port
 	return port
 	
 if __name__ == '__main__':
 	port = int(get_port(sys.argv[1:]))
-	app.run(port=port)
+	host = '0.0.0.0'
+	app.run(host=host, port=port)
