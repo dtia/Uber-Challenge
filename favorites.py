@@ -18,7 +18,6 @@ geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-#app.config.from_envvar('FAVORITE_SETTINGS', silent=True)
 
 def connect_db():
   return sqlite3.connect(app.config['DATABASE'])
@@ -69,7 +68,6 @@ def view_favorites():
 	
 @app.route('/update_list/<id>')
 def get_update_entry(id):
-	print 'this is the id: ' + str(id)
 	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites where id = ?', id)
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('update_favorite.html', entries=entries)
@@ -86,6 +84,12 @@ def update_entry():
 
 	g.db.execute('update favorites set name = ?, street = ?, city = ?, state = ?, zip = ?, lat = ?, lng = ? where id = ?',
 		[name, street, city, state, zip, lat, lng, fav_id])
+	g.db.commit()
+	return redirect(url_for('show_entries'))
+	
+@app.route('/delete/<id>')
+def delete_entry(id):
+	g.db.execute('delete from favorites where id = ?', id)
 	g.db.commit()
 	return redirect(url_for('show_entries'))
 	

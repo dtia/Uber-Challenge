@@ -81,6 +81,11 @@ function addFavorites() {
 	$('#listFav').removeClass("active");
 }
 
+function deleteFavorite(id) {
+	if(confirm('Are you sure you want to delete this favorite location?')) 
+		window.location = '/delete/' + id;	
+}
+
 $(function () {
     $(".updateFavorite").click(function () {
         $(".updateFavForm").submit();

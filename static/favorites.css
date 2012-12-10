@@ -2,6 +2,10 @@ dl {
 	margin-left: 50px;
 }
 
+.table tr td {
+	vertical-align: middle;
+}
+
 #mapDiv {
 	float: right;
 	width: 600px;
