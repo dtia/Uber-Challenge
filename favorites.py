@@ -109,8 +109,7 @@ def get_address(street, city, state, zip):
 def get_port(args):
 	try:                                
 		opts, args = getopt.getopt(args, "p", ["port="]) 
-	except getopt.GetoptError:           
-		usage()                          
+	except getopt.GetoptError:                      
 		sys.exit(2)
 	
 	port = 5000
