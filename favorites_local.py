@@ -1,18 +1,23 @@
 from __future__ import with_statement
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash, jsonify
-from flask.ext.sqlalchemy import SQLAlchemy
 from contextlib import closing
+import sqlite3
 import urllib
 import urllib2
 import json
+
+# configuration
+DATABASE = '/tmp/favorites.db'
+DEBUG = True
+SECRET_KEY = 'development key'
+USERNAME = 'admin'
+PASSWORD = 'default'
 
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
 
 def connect_db():
   return sqlite3.connect(app.config['DATABASE'])
@@ -101,4 +106,5 @@ def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
 	
 if __name__ == '__main__':
+  init_db()
   app.run()
