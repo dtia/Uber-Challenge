@@ -109,8 +109,6 @@ def get_address(street, city, state, zip):
 def get_port(args):
 	try:                                
 		opts, args = getopt.getopt(args, "p", ["port="]) 
-		print opts
-		print args
 	except getopt.GetoptError:                      
 		sys.exit(2)
 	
@@ -122,5 +120,5 @@ def get_port(args):
 	return port
 	
 if __name__ == '__main__':
-	port = get_port(sys.argv[1:])
+	port = int(get_port(sys.argv[1:]))
 	app.run(port=port)
