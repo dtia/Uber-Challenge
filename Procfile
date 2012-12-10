@@ -1,1 +1,1 @@
-web: python favorites.py -port $PORT
+web: python favorites.py -p $PORT
