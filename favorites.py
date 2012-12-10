@@ -106,14 +106,19 @@ def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
 
 def get_port(args):
-	args = args[1:]
+	try:                                
+		opts, args = getopt.getopt(argv, "p", ["port="]) 
+	except getopt.GetoptError:           
+		usage()                          
+		sys.exit(2)
+	
 	port = 5000
-	arg_arr = args.split(' ')
-	if len(arg_arr) == 2:
-		if arg_arr[0] == '-port':
-			port = arg_arr[1]
+	for opt, arg in opts:                
+		if opt in ("-p", "--port"):      
+	        port = arg
+
 	return port
 	
 if __name__ == '__main__':
-	port = get_port(sys.argv)
+	port = get_port(sys.argv[1:])
 	app.run(port=port)
