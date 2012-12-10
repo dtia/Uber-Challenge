@@ -18,7 +18,9 @@ geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+print 'config: ' + str(app.config['SQLALCHEMY_DATABASE_URI'])
 db = SQLAlchemy(app)
+print 'db: ' + str(db)
 
 def connect_db():
   return sqlite3.connect(app.config['DATABASE'])
@@ -114,7 +116,6 @@ def get_port(args):
 	
 	port = 5000
 	for opt, arg in opts:          
-		print opt + ' ' + arg      
 		if opt in ("-p", "--port"):
 			port = arg
 	return port
