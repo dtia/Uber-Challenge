@@ -104,8 +104,16 @@ def geocode_address(street, city, state, zip):
 
 def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
+
+def get_port(args):
+	args = [1:]
+	port = 5000
+	arg_arr = args.split(' ')
+	if len(arg_arr) == 2:
+		if arg_arr[0] == '-port':
+			port = arg_arr[1]
+	return port
 	
 if __name__ == '__main__':
-	for arg in sys.argv:
-		print arg
+	port = get_port(sys.argv)
 	app.run(port=port)
