@@ -113,7 +113,8 @@ def get_port(args):
 		sys.exit(2)
 	
 	port = 5000
-	for opt, arg in opts:                
+	for opt, arg in opts:          
+		print opt + ' ' + arg      
 		if opt in ("-p", "--port"):
 			print 'arg is ' + arg
 			port = arg
