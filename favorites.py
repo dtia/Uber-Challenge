@@ -33,9 +33,9 @@ def connect_db():
 def before_request():
   g.db = connect_db()
 
-@app.teardown_request
-def teardown_request(exception):
-  g.db.close()
+# @app.teardown_request
+# def teardown_request(exception):
+#   g.db.close()
 
 @app.route('/')
 def show_favorites():
