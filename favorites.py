@@ -105,4 +105,4 @@ def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
 	
 if __name__ == '__main__':
-  app.run()
+  app.run(port=port)
