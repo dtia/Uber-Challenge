@@ -1,0 +1,18 @@
+<!doctype html>
+<title>Favorites</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='favorites.css') }}">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="../static/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/favorites.js"></script>
+<div class="navbar navbar-inverse">
+	<div class="navbar-inner">
+		<ul class="nav">
+			<li id="listFav" class="active"><a href="/">List Favorites</a></li>
+			<li id="addFav" onclick="addFavorites()"><a>Add Favorites</a></li>
+		</ul>
+	</div>
+</div>
+<div id="page">
+	{% block body %}{% endblock %}
+</div>

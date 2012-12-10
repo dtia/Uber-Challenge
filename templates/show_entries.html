@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+<ul class=entries>
+	<h1>Favorite Locations</h1>
+	<table class="table">
+			{% for entry in entries %}
+			<tr>
+				<td><h3>{{ entry.name }}</h3></td>
+				<td>{{ entry.street }} <br> {{ entry.city }} {{ entry.state }} {{ entry.zip }}</td>
+				<td>
+					<a id="updateFavorite" href="javascript:;;">Update</a>
+					<form id="updateFavForm" action="{{ url_for('get_update_entry') }}" method="post">
+						<input id="idVal" type="hidden" name="id" value="{{ entry.id }}"/>
+					</form>
+				</td>
+			{% else %}
+			  <em>No favorites stored.</em>
+			</tr>
+			{% endfor %}
+	</table>
+</ul>
+{% endblock %}

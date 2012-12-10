@@ -1,0 +1,17 @@
+{% block body %}
+<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+  <dl>
+	<label for="name">Name:</label>
+	<input id="name" type=text size=30 name=name><br>
+	<label for="street">Street:</label>
+	<input id="street" type=text size=30 name=street><br>
+	<label for="city">City:</label>
+	<input id="city" type=text size=30 name=city><br>
+	<label for="state">State:</label>
+	<input id="state" type=text size=30 name=state><br>
+	<label for="zip">Zip:</label>
+	<input id="zip" type=text size=30 name=zip><br>
+    <dd><input type=submit value="Add Favorite">
+  </dl>
+</form>
+{% endblock %}
