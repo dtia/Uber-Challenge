@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
-<ul class=entries>
-	<h1>Favorite Locations</h1>
-	<table class="table">
+<h1>Favorite Locations</h1>
+<div id="tableContainer">
+	<table class="table table-striped table-condensed">
 			{% for entry in entries %}
 			<tr>
 				<td><h3>{{ entry.name }}</h3></td>
@@ -14,9 +14,10 @@
 					</form>
 				</td>
 			{% else %}
-			  <em>No favorites stored.</em>
+			  <h3><em>No favorites stored. Click 'Add Favorites' to add a location.</em></h3>
 			</tr>
 			{% endfor %}
 	</table>
-</ul>
+</div>
+<div id="mapDiv"></div>
 {% endblock %}

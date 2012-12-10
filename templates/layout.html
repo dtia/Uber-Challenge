@@ -5,14 +5,17 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="../static/bootstrap.min.js"></script>
 <script type="text/javascript" src="../static/favorites.js"></script>
-<div class="navbar navbar-inverse">
-	<div class="navbar-inner">
-		<ul class="nav">
-			<li id="listFav" class="active"><a href="/">List Favorites</a></li>
-			<li id="addFav" onclick="addFavorites()"><a>Add Favorites</a></li>
-		</ul>
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+<body onload="initialize()" class="container-fluid">
+	<div class="navbar navbar-inverse">
+		<div class="navbar-inner">
+			<ul class="nav">
+				<li id="listFav" class="active"><a href="/">List Favorites</a></li>
+				<li id="addFav" onclick="addFavorites()"><a>Add Favorites</a></li>
+			</ul>
+		</div>
 	</div>
-</div>
-<div id="page">
-	{% block body %}{% endblock %}
-</div>
+	<div id="page">
+		{% block body %}{% endblock %}
+	</div>
+</body>

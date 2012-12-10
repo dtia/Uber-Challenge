@@ -1,0 +1,16 @@
+dl {
+	margin-left: 50px;
+}
+
+#mapDiv {
+	float: right;
+	width: 600px;
+	height: 500px;
+	position: relative;
+	margin-right: 20px;
+}
+
+#tableContainer {
+	float: left;
+	width: 40%;
+}
