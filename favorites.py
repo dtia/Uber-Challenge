@@ -106,7 +106,7 @@ def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
 
 def get_port(args):
-	args = [1:]
+	args = args[1:]
 	port = 5000
 	arg_arr = args.split(' ')
 	if len(arg_arr) == 2:
