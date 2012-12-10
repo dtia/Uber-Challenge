@@ -115,7 +115,7 @@ def get_port(args):
 	port = 5000
 	for opt, arg in opts:                
 		if opt in ("-p", "--port"):      
-	        port = arg
+			port = arg
 
 	return port
 	
