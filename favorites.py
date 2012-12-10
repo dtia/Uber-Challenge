@@ -18,26 +18,24 @@ geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-print 'config: ' + str(app.config['SQLALCHEMY_DATABASE_URI'])
-db = SQLAlchemy(app)
-print 'db: ' + str(db)
+#db = SQLAlchemy(app)
 
 def connect_db():
-  return sqlite3.connect(app.config['DATABASE'])
+  return SQLAlchemy(app)
 
-def init_db():
-  with closing(connect_db()) as db:
-    with app.open_resource('schema.sql') as f:
-      db.cursor().executescript(f.read())
-    db.commit()
+# def init_db():
+#   with closing(connect_db()) as db:
+#     with app.open_resource('schema.sql') as f:
+#       db.cursor().executescript(f.read())
+#     db.commit()
 
-# @app.before_request
-# def before_request():
-#   g.db = connect_db()
-# 
-# @app.teardown_request
-# def teardown_request(exception):
-#   g.db.close()
+@app.before_request
+def before_request():
+  g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+  g.db.close()
 
 @app.route('/')
 def show_favorites():
