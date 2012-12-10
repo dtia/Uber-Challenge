@@ -8,6 +8,9 @@ import urllib2
 import json
 import os
 
+#configuration
+SERVER_NAME = 'favorite-places.herokuapp.com:' + $PORT
+
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 app = Flask(__name__)
