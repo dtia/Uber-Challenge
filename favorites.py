@@ -7,6 +7,7 @@ import urllib
 import urllib2
 import json
 import os
+import sys
 
 #configuration
 SERVER_NAME = 'favorite-places.herokuapp.com:47272'
@@ -105,4 +106,6 @@ def get_address(street, city, state, zip):
 	return street + ' ' + city + ' ' + state + ' ' + zip 
 	
 if __name__ == '__main__':
-  app.run(port=port)
+	for arg in sys.argv:
+		print arg
+	app.run(port=port)
