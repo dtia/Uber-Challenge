@@ -6,6 +6,7 @@ from contextlib import closing
 import urllib
 import urllib2
 import json
+import os
 
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
