@@ -1,5 +1,5 @@
 {% block body %}
-<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+<form action="{{ url_for('add_entry') }}" method="post" class="add-entry">
   <dl>
 	<label for="name">Name:</label>
 	<input id="name" type=text size=30 name=name><br>
@@ -11,7 +11,10 @@
 	<input id="state" type=text size=30 name=state><br>
 	<label for="zip">Zip:</label>
 	<input id="zip" type=text size=30 name=zip><br>
-    <dd><input type=submit value="Add Favorite">
+    <dd><input type="submit" value="Add Favorite">
+		<form action="/" method="get">
+		  <input type="submit" value="Cancel">
+		</form>
   </dl>
 </form>
 {% endblock %}

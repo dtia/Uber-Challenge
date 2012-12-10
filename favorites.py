@@ -1,6 +1,6 @@
 from __future__ import with_statement
 from flask import Flask, request, session, g, redirect, url_for, \
-    abort, render_template, flash
+    abort, render_template, flash, jsonify
 from contextlib import closing
 import sqlite3
 import urllib
@@ -42,6 +42,12 @@ def show_entries():
 	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('show_entries.html', entries=entries)
+	
+@app.route('/get_coords')
+def get_coords():
+	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
+	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
+	return jsonify(favorites=entries)
 
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -49,7 +55,7 @@ def add_entry():
 	street = request.form['street']
 	city = request.form['city']
 	state = request.form['state']
-	zip = request.form['zip']	
+	zip = request.form['zip']
 	lat, lng = geocode_address(street, city, state, zip)
 
 	g.db.execute('insert into favorites (name, street, city, state, zip, lat, lng) values (?, ?, ?, ?, ?, ?, ?)',
@@ -61,10 +67,9 @@ def add_entry():
 def view_favorites():
 	return render_template('add_favorites.html')
 	
-@app.route('/update_list', methods=['POST'])
-def get_update_entry():
-	id = request.form['id']
-	print id
+@app.route('/update_list/<id>')
+def get_update_entry(id):
+	print 'this is the id: ' + str(id)
 	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites where id = ?', id)
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('update_favorite.html', entries=entries)

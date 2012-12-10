@@ -8,10 +8,9 @@
 				<td><h3>{{ entry.name }}</h3></td>
 				<td>{{ entry.street }} <br> {{ entry.city }} {{ entry.state }} {{ entry.zip }}</td>
 				<td>
-					<a id="updateFavorite" href="javascript:;;">Update</a>
-					<form id="updateFavForm" action="{{ url_for('get_update_entry') }}" method="post">
-						<input id="idVal" type="hidden" name="id" value="{{ entry.id }}"/>
-					</form>
+					<a class="updateFavorite" href="/update_list/{{ entry.id }}">Update</a>
+					
+
 				</td>
 			{% else %}
 			  <h3><em>No favorites stored. Click 'Add Favorites' to add a location.</em></h3>

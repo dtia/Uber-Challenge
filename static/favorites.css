@@ -14,3 +14,46 @@ dl {
 	float: left;
 	width: 40%;
 }
+
+.infobox{
+    position:relative;
+	z-index: 1;
+    background-color:white;
+    border:1px solid rgb(136, 136, 136);
+    left:0px;
+    top:0px;
+    width:260px;
+	max-height:300px;
+	overflow: auto;
+}
+
+.infobox_close{
+    cursor:pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border:none;
+}
+
+.infobox_content{
+    margin:5px;
+    font-family: Arial;
+    font-size:13px;
+    line-height:22px;
+	color: black;
+}
+
+.infobox_pointer{
+    width:33px;
+    height:38px;
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+    left:20px;
+    top:-1px;
+}
+
+.infobox_title{
+	font-size: 16px;
+	font-weight: bold;
+}

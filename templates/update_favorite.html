@@ -16,7 +16,15 @@
 		<label for="zip">Zip:</label>
 		<input id="zip" type=text size=30 name=zip value="{{entry.zip}}"><br>
 	    <dd><input type=submit value="Update Favorite">
+		<input type="button" name="Cancel" value="Cancel" onclick="window.location = '/' " />
 	  </dl>
+	</form>
+	<!-- TODO: change this to delete -->
+	<form action="/" method="get">
+		<dl>
+			<input type="hidden" name="id" value="{{ entry.id }}"/>
+			<dd><input type="submit" value="Delete">
+		</dl>
 	</form>
 {% endfor %}
 
