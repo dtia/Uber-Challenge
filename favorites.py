@@ -8,6 +8,7 @@ import urllib2
 import json
 import os
 import sys
+import getopt
 
 #configuration
 SERVER_NAME = 'favorite-places.herokuapp.com:47272'
