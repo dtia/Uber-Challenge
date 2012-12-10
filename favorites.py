@@ -114,9 +114,11 @@ def get_port(args):
 	
 	port = 5000
 	for opt, arg in opts:                
-		if opt in ("-p", "--port"):      
+		if opt in ("-p", "--port"):
+			print 'arg is ' + arg
 			port = arg
-
+	
+	print 'port is ' + port
 	return port
 	
 if __name__ == '__main__':
