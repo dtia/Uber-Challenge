@@ -37,10 +37,10 @@ def teardown_request(exception):
   g.db.close()
 
 @app.route('/')
-def show_entries():
+def show_favorites():
 	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
-	return render_template('show_entries.html', entries=entries)
+	return render_template('show_favorites.html', entries=entries)
 	
 @app.route('/get_coords')
 def get_coords():
@@ -60,7 +60,7 @@ def add_entry():
 	g.db.execute('insert into favorites (name, street, city, state, zip, lat, lng) values (?, ?, ?, ?, ?, ?, ?)',
            [name, street, city, state, zip, lat, lng])
 	g.db.commit()
-	return redirect(url_for('show_entries'))
+	return redirect(url_for('show_favorites'))
 	
 @app.route('/add')
 def view_favorites():
@@ -85,13 +85,13 @@ def update_entry():
 	g.db.execute('update favorites set name = ?, street = ?, city = ?, state = ?, zip = ?, lat = ?, lng = ? where id = ?',
 		[name, street, city, state, zip, lat, lng, fav_id])
 	g.db.commit()
-	return redirect(url_for('show_entries'))
+	return redirect(url_for('show_favorites'))
 	
 @app.route('/delete/<id>')
 def delete_entry(id):
 	g.db.execute('delete from favorites where id = ?', id)
 	g.db.commit()
-	return redirect(url_for('show_entries'))
+	return redirect(url_for('show_favorites'))
 	
 def geocode_address(street, city, state, zip):
 	address = get_address(street, city, state, zip)

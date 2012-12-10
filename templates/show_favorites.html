@@ -6,7 +6,7 @@
 			{% for entry in entries %}
 			<tr>
 				<td><h3>{{ entry.name }}</h3></td>
-				<td>{{ entry.street }} <br> {{ entry.city }} {{ entry.state }} {{ entry.zip }}</td>
+				<td>{% if entry.street != '' %}{{ entry.street }}<br>{% endif %} {% if entry.city != '' %}{{ entry.city }}, {% endif %}  {{ entry.state }} {{ entry.zip }}</td>
 				<td>
 					<a class="updateFavorite" href="/update_list/{{ entry.id }}">Update</a>
 				</td>
