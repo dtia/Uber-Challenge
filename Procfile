@@ -1,1 +1,1 @@
-web: python favorites.py -p $PORT
+web: gunicorn Uber-Challenge:favorites -b 0.0.0.0:$PORT -w 3
