@@ -9,7 +9,7 @@ import json
 import os
 
 #configuration
-SERVER_NAME = 'favorite-places.herokuapp.com:$PORT'
+SERVER_NAME = 'favorite-places.herokuapp.com:47272'
 
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
