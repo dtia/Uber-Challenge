@@ -68,7 +68,7 @@ def add_entry():
 def view_favorites():
 	return render_template('add_favorites.html')
 	
-@app.route('/update_list/<id>')
+@app.route('/update_list/<fav_id>')
 def get_update_entry(fav_id):
 	print 'fav id: ' + fav_id
 	print favorites_table.c.id
