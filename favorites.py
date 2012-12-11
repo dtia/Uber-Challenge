@@ -16,7 +16,6 @@ geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
 
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 metadata = MetaData(bind=engine)
