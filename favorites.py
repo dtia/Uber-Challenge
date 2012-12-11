@@ -10,14 +10,14 @@ import os
 import sys
 import getopt
 
-#configuration
-SERVER_NAME = 'favorite-places.herokuapp.com:47272'
-
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 app = Flask(__name__)
+print 'line 1'
 app.config.from_object(__name__)
+print 'line 2'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+print 'line 3'
 #db = SQLAlchemy(app)
 
 def connect_db():
