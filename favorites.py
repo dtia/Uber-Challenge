@@ -82,15 +82,13 @@ def update_entry():
 	lat, lng = geocode_address(street, city, state, zip)
 	
 	update(favorites_table, favorites_table.c.id == fav_id).execute(name=name, street=street, city=city, state=state, zip=zip, lat=lat, lng=lng)
-	# g.db.execute('update favorites set name = ?, street = ?, city = ?, state = ?, zip = ?, lat = ?, lng = ? where id = ?',
-	# 	[name, street, city, state, zip, lat, lng, fav_id])
-	# g.db.commit()
 	return redirect(url_for('show_favorites'))
 	
 @app.route('/delete/<id>')
 def delete_entry(id):
-	g.db.execute('delete from favorites where id = ?', id)
-	g.db.commit()
+	delete(favorites_table, favorites_table.c.id==id).execute()
+	# g.db.execute('delete from favorites where id = ?', id)
+	# g.db.commit()
 	return redirect(url_for('show_favorites'))
 	
 def geocode_address(street, city, state, zip):
