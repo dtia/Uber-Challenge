@@ -42,7 +42,7 @@ metadata.create_all()
 def show_favorites():
 	print 'inside show favorites'
 	#cur = db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
-	cur = select([favorites_table]).execute()
+	cur = select([favorites_table]).order_by(favorites_table.columns.id).execute()
 	print 'after execute'
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	print 'before render'
