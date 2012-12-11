@@ -6,6 +6,7 @@ from sqlalchemy import Integer, String, Float
 from sqlalchemy import MetaData, Column, Table
 from sqlalchemy import create_engine
 from sqlalchemy.sql import select
+from sqlalchemy.orm import sessionmaker
 from contextlib import closing
 import urllib
 import urllib2
@@ -34,18 +35,20 @@ favorites_table = Table('favorites', metadata,
 	Column('state', String(10)),
 	Column('zip', Integer),
 )
-
 metadata.create_all()
+
+#Session = sessionmaker(bind=engine)
+#session = Session()
 
 @app.route('/')
 def show_favorites():
-	cur = select([favorites_table]).order_by(favorites_table.columns.id.desc()).execute()
+	cur = select([favorites_table]).order_by(favorites_table.c.id.desc()).execute()
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('show_favorites.html', entries=entries)
 	
 @app.route('/get_coords')
 def get_coords():
-	cur = select([favorites_table]).order_by(favorites_table.columns.id.desc()).execute()
+	cur = select([favorites_table]).order_by(favorites_table.c.id.desc()).execute()
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return jsonify(favorites=entries)
 
@@ -67,6 +70,8 @@ def view_favorites():
 	
 @app.route('/update_list/<id>')
 def get_update_entry(fav_id):
+	print 'fav id: ' + fav_id
+	print favorites_table.c.id
 	cur = select([favorites_table], favorites_table.c.id == fav_id).execute()
 	#cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites where id = ?', id)
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
