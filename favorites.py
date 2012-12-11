@@ -29,9 +29,9 @@ def connect_db():
 #       db.cursor().executescript(f.read())
 #     db.commit()
 
-@app.before_request
-def before_request():
-  g.db = connect_db()
+# @app.before_request
+# def before_request():
+#   g.db = connect_db()
 
 # @app.teardown_request
 # def teardown_request(exception):
@@ -120,6 +120,7 @@ def get_port(args):
 	return port
 	
 if __name__ == '__main__':
+	print 'inside main'
 	port = int(get_port(sys.argv[1:]))
 	host = '0.0.0.0'
 	app.run(host=host, port=port)
