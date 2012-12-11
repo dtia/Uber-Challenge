@@ -40,7 +40,7 @@ def connect_db():
 @app.route('/')
 def show_favorites():
 	print 'inside show favorites'
-	cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
+	cur = db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('show_favorites.html', entries=entries)
 	
