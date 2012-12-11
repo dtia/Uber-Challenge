@@ -24,7 +24,7 @@ db = SQLAlchemy(app)
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 metadata = MetaData(bind=engine)
 
-favorites_table = Table('favorites2', metadata,
+favorites_table = Table('favorites', metadata,
 	Column('id', Integer, primary_key=True),
 	Column('name', String(40)),
 	Column('lat', Float(5)),
@@ -35,7 +35,6 @@ favorites_table = Table('favorites2', metadata,
 	Column('zip', Integer),
 )
 
-print 'create tables'
 metadata.create_all()
 
 @app.route('/')
