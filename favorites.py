@@ -13,11 +13,8 @@ import getopt
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
 app = Flask(__name__)
-print 'line 1'
 app.config.from_object(__name__)
-print 'line 2'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-print 'line 3'
 db = SQLAlchemy(app)
 
 def connect_db():
@@ -41,7 +38,9 @@ def connect_db():
 def show_favorites():
 	print 'inside show favorites'
 	cur = db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
+	print 'after execute'
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
+	print 'before render'
 	return render_template('show_favorites.html', entries=entries)
 	
 @app.route('/get_coords')
