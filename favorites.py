@@ -6,7 +6,7 @@ from sqlalchemy import Integer, String, Float
 from sqlalchemy import MetaData, Column, Table
 from sqlalchemy import create_engine
 from sqlalchemy.sql import select
-from sqlalchemy import update
+from sqlalchemy import update, delete
 from contextlib import closing
 import urllib
 import urllib2
@@ -86,7 +86,6 @@ def update_entry():
 	
 @app.route('/delete/<fav_id>')
 def delete_entry(fav_id):
-	print fav_id
 	delete(favorites_table, favorites_table.c.id == fav_id).execute()
 	# g.db.execute('delete from favorites where id = ?', id)
 	# g.db.commit()
