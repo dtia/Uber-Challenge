@@ -18,7 +18,7 @@ app.config.from_object(__name__)
 print 'line 2'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 print 'line 3'
-g.db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 def connect_db():
   return SQLAlchemy(app)
