@@ -2,7 +2,7 @@ from __future__ import with_statement
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Float, MetaData, Column, Table, create_engine \
+from sqlalchemy import Integer, String, Float, MetaData, Column, Table, create_engine, \
 	update, delete
 from sqlalchemy.sql import select
 from contextlib import closing
