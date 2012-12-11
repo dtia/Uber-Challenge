@@ -84,9 +84,9 @@ def update_entry():
 	update(favorites_table, favorites_table.c.id == fav_id).execute(name=name, street=street, city=city, state=state, zip=zip, lat=lat, lng=lng)
 	return redirect(url_for('show_favorites'))
 	
-@app.route('/delete/<id>')
-def delete_entry(id):
-	delete(favorites_table, favorites_table.c.id==id).execute()
+@app.route('/delete/<fav_id>')
+def delete_entry(fav_id):
+	delete(favorites_table, favorites_table.c.id == fav_id).execute()
 	# g.db.execute('delete from favorites where id = ?', id)
 	# g.db.commit()
 	return redirect(url_for('show_favorites'))
