@@ -2,6 +2,7 @@ from __future__ import with_statement
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import Integer, String
 from contextlib import closing
 import urllib
 import urllib2
@@ -16,6 +17,17 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
+
+# users_table = Table('favorites', None,
+# 	Column('id', Integer, primary_key=True),
+# 	Column('name', String(40)),
+# 	Column('lat', Float(5)),
+# 	Column('lng', Float(5)),
+# 	Column('street', String(40)),
+# 	Column('city', String(40)),
+# 	Column('state', String(10)),
+# 	Column('zip', Integer),
+# )
 
 def connect_db():
   return SQLAlchemy(app)
