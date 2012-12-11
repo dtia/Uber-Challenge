@@ -5,7 +5,7 @@
 	<table class="table table-striped table-condensed">
 			{% for entry in entries %}
 			<tr>
-				<td><h3>{{ entry.name }}</h3></td>
+				<td><a onclick="setMapCenter({{ entry.lat }}, {{ entry.lng }})"><h3>{{ entry.name }}</h3></a></td>
 				<td>{% if entry.street != '' %}{{ entry.street }}<br>{% endif %} {{ entry.city }}{% if entry.city != '' and entry.state != '' %}, {% endif %}  {{ entry.state }} {{ entry.zip }}</td>
 				<td>
 					<a class="updateFavorite" href="/update_list/{{ entry.id }}">Update</a>
