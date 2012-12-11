@@ -40,11 +40,8 @@ metadata.create_all()
 
 @app.route('/')
 def show_favorites():
-	print 'inside show favorites'
 	cur = select([favorites_table]).order_by(favorites_table.columns.id.desc()).execute()
-	print 'after execute'
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
-	print 'before render'
 	return render_template('show_favorites.html', entries=entries)
 	
 @app.route('/get_coords')
@@ -61,8 +58,10 @@ def add_entry():
 	state = request.form['state']
 	zip = request.form['zip']
 	lat, lng = geocode_address(street, city, state, zip)
-
+	
+	print 'before insert'
 	result = favorites_table.insert().execute(name=name, street=street, city=city, state=state, zip=zip, lat=lat, lng=lng)
+	print 'after insert'
 	return redirect(url_for('show_favorites'))
 	
 @app.route('/add')
