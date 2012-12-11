@@ -25,11 +25,15 @@ function plotFavorites() {
 	});
 }
 
+function setMapCenter(lat, lng) {
+	center = new Microsoft.Maps.Location(lat, lng);
+	map.setView({ center:  center });
+}
+
 function addMarkersOnMapForLocations(locations) {
 	for(var i=0; i<locations.length; i++){
 		if (i===0) {
-			center = new Microsoft.Maps.Location(locations[i].lat, locations[i].lng);
-			map.setView({ center:  center });
+			setMapCenter(locations[i].lat, locations[i].lng);
 		}
 		addMarkersOnMap(locations[i]);
 	}
