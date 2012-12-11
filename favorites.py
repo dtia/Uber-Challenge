@@ -33,7 +33,7 @@ favorites_table = Table('favorites', metadata,
 	Column('street', String(40)),
 	Column('city', String(40)),
 	Column('state', String(10)),
-	Column('zip', Integer),
+	Column('zip', String(5)),
 )
 metadata.create_all()
 
