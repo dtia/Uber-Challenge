@@ -67,7 +67,7 @@ def view_favorites():
 	
 @app.route('/update_list/<id>')
 def get_update_entry(fav_id):
-	cur = select([favorites_table], favorites_table.columns.id = fav_id).execute()
+	cur = select([favorites_table], favorites_table.c.id = fav_id).execute()
 	#cur = g.db.execute('select id, name, lat, lng, street, city, state, zip from favorites where id = ?', id)
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	return render_template('update_favorite.html', entries=entries)
