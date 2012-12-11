@@ -86,6 +86,7 @@ def update_entry():
 	
 @app.route('/delete/<fav_id>')
 def delete_entry(fav_id):
+	print fav_id
 	delete(favorites_table, favorites_table.c.id == fav_id).execute()
 	# g.db.execute('delete from favorites where id = ?', id)
 	# g.db.commit()
