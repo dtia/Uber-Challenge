@@ -27,6 +27,10 @@ function plotFavorites() {
 
 function addMarkersOnMapForLocations(locations) {
 	for(var i=0; i<locations.length; i++){
+		if (i===0) {
+			center = new Microsoft.Maps.Location(locations[i].lat, locations[i].lng);
+			map.setView({ center:  center });
+		}
 		addMarkersOnMap(locations[i]);
 	}
 }
