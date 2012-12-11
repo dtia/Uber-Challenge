@@ -2,18 +2,14 @@ from __future__ import with_statement
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, Float
-from sqlalchemy import MetaData, Column, Table
-from sqlalchemy import create_engine
+from sqlalchemy import Integer, String, Float, MetaData, Column, Table, create_engine \
+	update, delete
 from sqlalchemy.sql import select
-from sqlalchemy import update, delete
 from contextlib import closing
 import urllib
 import urllib2
 import json
 import os
-import sys
-import getopt
 
 geocode_url = 'http://maps.googleapis.com/maps/api/geocode/json?'
 
@@ -87,8 +83,6 @@ def update_entry():
 @app.route('/delete/<fav_id>')
 def delete_entry(fav_id):
 	delete(favorites_table, favorites_table.c.id == fav_id).execute()
-	# g.db.execute('delete from favorites where id = ?', id)
-	# g.db.commit()
 	return redirect(url_for('show_favorites'))
 	
 def geocode_address(street, city, state, zip):
@@ -101,22 +95,4 @@ def geocode_address(street, city, state, zip):
 	return (location['lat'], location['lng'])
 
 def get_address(street, city, state, zip):
-	return street + ' ' + city + ' ' + state + ' ' + zip 
-
-def get_port(args):
-	try:                                
-		opts, args = getopt.getopt(args, "p:", ["port="]) 
-	except getopt.GetoptError:                      
-		sys.exit(2)
-	
-	port = 5000
-	for opt, arg in opts:          
-		if opt in ("-p", "--port"):
-			port = arg
-	return port
-	
-if __name__ == '__main__':
-	print 'inside main'
-	port = int(get_port(sys.argv[1:]))
-	host = '0.0.0.0'
-	app.run(host=host, port=port)
+	return street + ' ' + city + ' ' + state + ' ' + zip
