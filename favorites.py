@@ -5,6 +5,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String, Float
 from sqlalchemy import MetaData, Column, Table
 from sqlalchemy import create_engine
+from sqlalchemy.sql import select
 from contextlib import closing
 import urllib
 import urllib2
@@ -20,7 +21,6 @@ app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
-print app.config['SQLALCHEMY_DATABASE_URI']
 engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 metadata = MetaData(bind=engine)
 
@@ -38,27 +38,11 @@ favorites_table = Table('favorites', metadata,
 print 'create tables'
 metadata.create_all()
 
-def connect_db():
-  return SQLAlchemy(app)
-
-# def init_db():
-#   with closing(connect_db()) as db:
-#     with app.open_resource('schema.sql') as f:
-#       db.cursor().executescript(f.read())
-#     db.commit()
-
-# @app.before_request
-# def before_request():
-#   g.db = connect_db()
-
-# @app.teardown_request
-# def teardown_request(exception):
-#   g.db.close()
-
 @app.route('/')
 def show_favorites():
 	print 'inside show favorites'
-	cur = db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
+	#cur = db.execute('select id, name, lat, lng, street, city, state, zip from favorites order by id desc')
+	cur = select([favorites_table]).execute()
 	print 'after execute'
 	entries = [dict(id=row[0], name=row[1], lat=row[2], lng=row[3], street=row[4], city=row[5], state=row[6], zip=row[7]) for row in cur.fetchall()]
 	print 'before render'
